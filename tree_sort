@@ -1,1 +1,68 @@
+################### merge sort ############### 
+ListNode* findMiddle(ListNode* head){
+          ListNode* slow = root;
+          ListNode* fast = root->next;
+       while(fast!=NULL){
+            fast = fast ->next->next;
+            slow = slow ->next;
+        }
+return slow;
+}
+
+ListNode* sortList(ListNode *head){
+if(head==NULL)  return head;
+ListNode* middle =findMiddle(head);
+ListNode* left =  findMiddle(middle->left);
+middle->left =NULL;
+ListNode* right = findMiddle(head);
+
+return merge(left, right);
+} 
+
+ListNode* merge(ListNode *left, ListNode *right){
+
+ListNode * tmp =new ListNode(0);
+while(left&& right){
+
+if(left->val > right->val){
+  tmp-> next = right;
+  right = right ->next;
+}else {
+  tmp-> next = left;
+  left = left ->next;
+}
+ 
+tmp = tmp->next;
+}
+
+if(left->next) tmp->next =left;
+if(right->next) tmp->next =right;
+
+return tmp;
+
+}
+
+
+################### insertion sort ############### 
+
+ListNode * insertionSortList(ListNode *head) {
+ListNode * prev;
+ListNode * dummy = new ListNode(0);
+ListNode * cur =head;
+while(cur){
+ListNode* key = cur->next;
+prev = dummy;
+while(!prev && prev->val < key ->val){
+prev = prev -> next;
+}
+
+cur->next = prev->next;
+prev->next = cur;
+cur = key;
+
+}
+
+return dummy->next;
+
+}
 
