@@ -68,3 +68,28 @@ vector<int> inorderTraversal (TreeNode* root){
   
   } 
  }
+ 
+******************************** Levelorder **********************************
+
+vector<vector<int>>levelOrder(TreeNode * root){
+    vector<vector<int>> v; 
+    level_order(root, v, 0);
+    reverse(v.begin(), v.end());
+    return v;
+
+}
+
+void level_order(TreeNode * root, vector<vector<int>> v, level)
+{
+
+if(root= NULL) return;
+
+if(v.empty() || level > v.size()-1)
+v.push_back(vector<int>());
+
+v[n].push_back(root->val);
+if(root->left ) level_order(root -> left , v, level+1 );
+if(root->right) level_order(root -> right, v, level+1 );
+
+
+}
