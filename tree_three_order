@@ -87,7 +87,8 @@ if(root= NULL) return;
 if(v.empty() || level > v.size()-1)
 v.push_back(vector<int>());
 
-v[n].push_back(root->val);
+v[n].push_back(root->val);                          // dynamic size    
+                                                    //vector<int> V1[] fix the size of 2D v1 array
 level_order(root -> left , v, level+1 );
 level_order(root -> right, v, level+1 );
 
