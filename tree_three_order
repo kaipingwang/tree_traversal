@@ -1,0 +1,70 @@
+******************************** Inorder ***********************************
+vector<int> inorderTraversal (TreeNode* root){
+    vector<int> res;
+    stack<TreeNode*> tree;
+    TreeNode* cur = root;
+    while(cur!=NULL || ! tree.empty()){
+     while(cur!=NULL){                    // reach to the left bottom of tree             
+      tree.push(cur);
+      cur= cur->left;
+     }
+     cur = tree.top();             
+     tree.pop();
+     res.push_back(cur->val);
+     cur =cur->right;
+    }
+    return res;
+}
+
+******************************** preorder **********************************
+ vector<int> preorderTraversal(TreeNode *root) { 
+  vector<int> res;
+  stack<TreeNode*> tree;
+  tree.push(root);
+  
+  while(root!=NULL  && !tree.empty()){
+     TreeNode *cur = tree.top();
+     tree.pop();
+     res.push(cur->val);
+     
+     if(cur->right){                    // push right side first and then left side 
+     tree.push(cur->right);             
+     cur->right =NULL;
+     }  
+     
+     if(cur->left){                    // latest push, pop first
+     tree.push(cur->left);
+     cur->left =NULL;
+     }  
+     
+  return res;
+  
+  } 
+ }
+ 
+ 
+ ******************************** postorder **********************************
+ vector<int> postorderTraversal(TreeNode *root) { 
+  vector<int> res;
+  stack<TreeNode*> tree;
+  tree.push(root);
+  
+  while(root!=NULL  && !tree.empty()){
+     TreeNode *cur = tree.top();         // pop up middle first  
+     tree.pop();       
+     res.push(cur->val);
+     
+     if(cur->left){                     // pop up left side third
+     tree.push(cur->left);
+     cur->left =NULL;
+     }  
+     
+     if(cur->right){                    // pop up right side second
+     tree.push(cur->right);             
+     cur->right =NULL;
+     }  
+  reverse(res.begin(),res.end());
+  return res;
+  
+  } 
+ }
